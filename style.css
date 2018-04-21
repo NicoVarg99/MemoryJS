@@ -1,0 +1,51 @@
+h1, p {
+  text-align: center;
+}
+
+body {
+  font-family: arial;
+  margin: 0;
+  background: #19a2c9;
+  color: #fff;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.front, .back {
+  border: 2px gray solid;
+  padding: 6px;
+  border-radius: 7px;
+}
+
+.front {
+  background-color: #ccc;
+  background-image: url("res/back.png");
+}
+
+.back {
+  /* background-color: red; */
+}
+
+#memTab {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: #fff210;
+  text-decoration: none;
+  display: inline-block;
+  width: 33%;
+  text-align: center
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+}
