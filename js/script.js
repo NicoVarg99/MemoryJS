@@ -19,18 +19,18 @@ function shuffle(a) {
 function checkMatch() { //To be called when 2 cards are uncovered
   if (c1 == c2) { //Check if equal
     //Hide matching cards
-    $('.card').filter(function() {
+    $('.memcard').filter(function() {
         return $($(this).children()[1]).css('background-color') == c1;
     }).fadeTo("slow", 0, function() {
-    	$(".card").filter(function() {
+    	$(".memcard").filter(function() {
           return $($(this).children()[1]).css('background-color') == c1;
       }).hide();
-      $(".card").filter(function() {
+      $(".memcard").filter(function() {
           return $($(this).children()[1]).css('background-color') == c1;
       }).remove();
     });
   } else { //Not equal, unflip them
-    $(".card").flip(false);
+    $(".memcard").flip(false);
   }
   flipped = 0;
 }
@@ -68,7 +68,7 @@ function initializeWithSize(r, c) {
   for (i = 0; i < r; i++) {
     content += '<tr>';
     for (j = 0; j < c; j++) {
-      content += '<td><div class="card">\
+      content += '<td><div class="memcard">\
                     <div class="front"></div>\
                     <div class="back" style="background-color: ' + colors[c * i + j] + ';"></div>\
                   </div></td>';
@@ -78,12 +78,12 @@ function initializeWithSize(r, c) {
   content += "</table>"
 
   $('#memTab').replaceWith(content);
-  $(".card").flip({
+  $(".memcard").flip({
     trigger: "manual"
   });
 
   //Click on a card
-  $(".card").click(function() {
+  $(".memcard").click(function() {
     var card = $(this).data("flip-model");
     $("#moves").html("Moves: " + ++moves);
     if (card.isFlipped) { //If already flipped unflip
@@ -105,7 +105,7 @@ function initializeWithSize(r, c) {
 
 
 function checkWinner() {
-  if ($(".card").length == 0) {
+  if ($(".memcard").length == 0) {
     $('#memTab').replaceWith("<p>You win!</p>");
     alert("You win! - difficulty: " + difficulty + " " +  " Moves: " + moves);
     clearInterval(interval);
