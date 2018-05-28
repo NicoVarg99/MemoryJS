@@ -35,10 +35,6 @@ function checkMatch() { //To be called when 2 cards are uncovered
   flipped = 0;
 }
 
-
-
-
-
 function initializeWithSize(r, c) {
   console.log("r = " + r + " - c = " + c);
   clearInterval(interval);
@@ -107,21 +103,29 @@ function initializeWithSize(r, c) {
   interval = setInterval(checkWinner, 100);
 }
 
-$("button").click(function () {
-	$("button").removeClass('btn-primary').addClass('btn-default');
-	$(this).removeClass('btn-default').addClass('btn-primary');
-  difficulty = $(this).data("level");
-  if (difficulty == "easy") initializeWithSize(2, 4);
-  if (difficulty == "medium") initializeWithSize(4, 4);
-  if (difficulty == "hard") initializeWithSize(4, 6);
-})
 
 function checkWinner() {
   if ($(".card").length == 0) {
-    console.log("Pazzesco");
     $('#memTab').replaceWith("<p>You win!</p>");
+    alert("You win! - difficulty: " + difficulty + " " +  " Moves: " + moves);
     clearInterval(interval);
   }
 }
 
-//initializeWithSize(4, 4);
+function initialize() {
+  $(document).ready(function() {
+    $("button").click(function () {
+    	$("button").removeClass('btn-primary').addClass('btn-default');
+    	$(this).removeClass('btn-default').addClass('btn-primary');
+      difficulty = $(this).data("level");
+      if (difficulty == "1") initializeWithSize(2, 4);
+      if (difficulty == "2") initializeWithSize(4, 4);
+      if (difficulty == "3") initializeWithSize(4, 6);
+      reInitializeLeaderboard();
+    })
+
+    difficulty = 2;
+    initializeWithSize(4, 4);
+    initializeLeaderboard();
+  })
+}
