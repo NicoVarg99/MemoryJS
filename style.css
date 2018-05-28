@@ -5,8 +5,8 @@ h1, p {
 body {
   font-family: arial;
   margin: 0;
-  background: #19a2c9;
-  color: #fff;
+  /* background: #19a2c9; */
+  /* color: #fff; */
 }
 
 .card {

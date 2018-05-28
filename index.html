@@ -5,19 +5,22 @@
 		<title>JQuery Memory Game</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<h1>JQuery -  Memory Game</h1>
-		Select the difficulty: 
-		<select>
-		  <option value="easy">Easy</option>
-		  <option value="medium">Medium</option>
-		  <option value="hard">Hard</option>
-		</select>
+		<h1>Memory Game <span class="label label-primary">JQuery</span></h1>
+		<br>Start a new game with level:
+		<div class="btn-group" role="group">
+		  <button type="button" class="btn btn-default" data-level="easy">Easy</button>
+		  <button type="button" class="btn btn-default" data-level="medium">Medium</button>
+		  <button type="button" class="btn btn-default" data-level="hard">Hard</button>
+		</div>
 		<hr>
 		<div id="memTab"></div>
 		<p id="moves">Moves: 0</p>
+		<hr>
+		<p>Leaderboard</p>
 		<hr>
 		<p>Nicola Salsotto</p>
 		<script src="script.js"></script>
