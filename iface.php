@@ -5,18 +5,16 @@ $username = "root";
 $password = "12345678";
 $dbname = "memory";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+
+$conn = new mysqli($servername, $username, $password, $dbname); // Create connection
+
+if ($conn->connect_error)
+  die("Connection failed: " . $conn->connect_error);
 
 header('Content-Type: application/json');
+$level = mysqli_real_escape_string($conn, htmlspecialchars($_GET["level"]));
 
 if ($_GET["q"] == "getLeaderboard") {
-  $level = $_GET["level"];
-  $level = mysqli_real_escape_string($conn, $level);
   $sql = "SELECT * FROM `leaderboard` WHERE `level` = $level";
   $result = $conn->query($sql);
   $json = [];
@@ -31,14 +29,24 @@ if ($_GET["q"] == "getLeaderboard") {
         'timestamp' => $row["timestamp"]
       ));
   $json = json_encode($json);
-} else if ($_GET["q"] == "postRecord") {
-  echo "POST RECORD";
-  $name = $_GET["name"];
-  $level = $_GET["level"];
-  $moves = $_GET["moves"];
-  echo $name;
-  echo $level;
-  echo $moves;
+} else if ($_GET["q"] == "postResult") {
+  $name = mysqli_real_escape_string($conn, htmlspecialchars($_GET["name"]));
+  $moves = mysqli_real_escape_string($conn, htmlspecialchars($_GET["moves"]));
+
+  $sql = "SELECT * FROM `leaderboard` WHERE `level` = $level AND `name` = '$name' AND `moves` <= $moves";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows == 0) {
+    echo "hai battuto il record";
+    $sql = "INSERT INTO `leaderboard` (`name`, `level`, `moves`) VALUES ('$name', '$level', '$moves') ON DUPLICATE KEY UPDATE moves='$moves', timestamp=CURRENT_TIMESTAMP";
+
+    if ($conn->query($sql) === TRUE)
+      $json = json_encode(array('status' => true, 'msg' => 'New personal record'));
+    else
+      $json = json_encode(array('status' => false, 'msg' => 'SQL Error:' . $sql . " - " . $conn->error));
+  } else {
+    $json = json_encode(array('status' => false, 'msg' => 'Personal record not beaten.'));
+  }
 }
 
 $conn->close();

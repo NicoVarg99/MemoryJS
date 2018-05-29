@@ -103,10 +103,9 @@ function initializeWithSize(r, c) {
   interval = setInterval(checkWinner, 100);
 }
 
-
 function checkWinner() {
   if ($(".memcard").length == 0) {
-    $('#memTab').replaceWith("<p>You win!</p>");
+    $('#memTab').replaceWith("<p id='memTab'>You win!</p>");
     alert("You win! - difficulty: " + difficulty + " " +  " Moves: " + moves);
     clearInterval(interval);
   }
@@ -115,8 +114,8 @@ function checkWinner() {
 function initialize() {
   $(document).ready(function() {
     $("button").click(function () {
-    	$("button").removeClass('btn-primary').addClass('btn-default');
-    	$(this).removeClass('btn-default').addClass('btn-primary');
+    	$("button").removeClass('active');
+    	$(this).addClass('active');
       difficulty = $(this).data("level");
       if (difficulty == "1") initializeWithSize(2, 4);
       if (difficulty == "2") initializeWithSize(4, 4);
