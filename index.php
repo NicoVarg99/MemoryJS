@@ -50,20 +50,16 @@
 				<button type="button" onclick="location.href='/?logout';" class="btn btn-outline-primary float-right">Logout</button>
 			</div>
 			<hr>
-
 			<div class="alert alert-dismissible alert-success" style="display: none;">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<h4 class="alert-heading">Way to go!</h4>
 				<p class="mb-0">Well done, you've just beaten your record.</p>
 			</div>
-
 			<div class="alert alert-dismissible alert-warning" style="display: none;">
 			  <button type="button" class="close" data-dismiss="alert">&times;</button>
 			  <h4 class="alert-heading">Better luck next time!</h4>
 			  <p class="mb-0">You didn't beat your record, try again.</p>
 			</div>
-
-
 			<div id="memTab"></div>
 			<p id="moves">Moves: 0</p>
 			<hr>
@@ -79,9 +75,7 @@
 			</thead>
 		 	</table>
 			<hr>
-			<div class="footer">
-  			<p>Nicola Salsotto</p>
-			</div>
+			<?php include("inc/footer.php"); ?>
 		</div>
 	</body>
 </html>

@@ -33,9 +33,7 @@
   			</form>
   		</div>
 			<hr>
-			<div class="footer">
-  			<p>Nicola Salsotto</p>
-			</div>
+			<?php include("inc/footer.php"); ?>
 		</div>
 	</body>
 </html>
