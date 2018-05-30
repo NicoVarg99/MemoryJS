@@ -15,7 +15,7 @@ header('Content-Type: application/json');
 $level = mysqli_real_escape_string($conn, htmlspecialchars($_GET["level"]));
 
 if ($_GET["q"] == "getLeaderboard") {
-  $sql = "SELECT * FROM `leaderboard` WHERE `level` = $level";
+  $sql = "SELECT * FROM `leaderboard` WHERE `level` = $level ORDER BY `moves` ASC";
   $result = $conn->query($sql);
   $json = [];
   $i = 0;

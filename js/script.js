@@ -121,6 +121,7 @@ function initialize() {
       if (difficulty == "2") initializeWithSize(4, 4);
       if (difficulty == "3") initializeWithSize(4, 6);
       reInitializeLeaderboard();
+      $(".alert").slideUp();
     })
 
     $(".alert button").click(function() {
