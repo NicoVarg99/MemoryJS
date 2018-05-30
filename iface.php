@@ -37,7 +37,6 @@ if ($_GET["q"] == "getLeaderboard") {
   $result = $conn->query($sql);
 
   if ($result->num_rows == 0) {
-    echo "hai battuto il record";
     $sql = "INSERT INTO `leaderboard` (`name`, `level`, `moves`) VALUES ('$name', '$level', '$moves') ON DUPLICATE KEY UPDATE moves='$moves', timestamp=CURRENT_TIMESTAMP";
 
     if ($conn->query($sql) === TRUE)

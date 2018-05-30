@@ -2,7 +2,7 @@ var flipped = 0;
 var c1 = "";
 var c2 = "";
 var moves = 0;
-var difficulty = "medium"
+var difficulty = "2"
 var interval;
 
 function shuffle(a) {
@@ -36,7 +36,6 @@ function checkMatch() { //To be called when 2 cards are uncovered
 }
 
 function initializeWithSize(r, c) {
-  console.log("r = " + r + " - c = " + c);
   clearInterval(interval);
   moves = 0;
   $("#moves").html("Moves: " + moves);
@@ -105,22 +104,27 @@ function initializeWithSize(r, c) {
 
 function checkWinner() {
   if ($(".memcard").length == 0) {
-    $('#memTab').replaceWith("<p id='memTab'>You win!</p>");
-    alert("You win! - difficulty: " + difficulty + " " +  " Moves: " + moves);
     clearInterval(interval);
+    $('#memTab').replaceWith("<p id='memTab'>You win!</p>");
+    //alert("You win! - difficulty: " + difficulty + " " +  " Moves: " + moves);
+    pushRecord();
   }
 }
 
 function initialize() {
   $(document).ready(function() {
-    $("button").click(function () {
-    	$("button").removeClass('active');
+    $(".btn-group button").click(function () {
+    	$(".btn-group button").removeClass('active');
     	$(this).addClass('active');
       difficulty = $(this).data("level");
       if (difficulty == "1") initializeWithSize(2, 4);
       if (difficulty == "2") initializeWithSize(4, 4);
       if (difficulty == "3") initializeWithSize(4, 6);
       reInitializeLeaderboard();
+    })
+
+    $(".alert button").click(function() {
+      $(this).parent().slideUp();
     })
 
     difficulty = 2;
